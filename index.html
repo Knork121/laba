@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script defer src="index.js"></script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        transition: background-color 1.2s;
+        height: 100%;
+        font-size: 20px;
+        background-color: rgba(134, 120, 107, 0.557);
+      }
+
+      .acticle__about {
+        padding-bottom: 30px;
+      }
+
+      .logo {
+        border-radius: 8%;
+        height: auto;
+        display: block;
+      }
+
+      .container {
+        margin: 0 auto;
+        max-width: 1240px;
+        padding: 0 15px;
+      }
+
+      .menu li {
+        list-style: none;
+        padding-bottom: 10px;
+        padding-left: 10px;
+      }
+
+      .copyButton {
+        position: relative;
+        font-size: 16px;
+        margin-left: 3px;
+        padding: 8px;
+        transition: all 300ms ease;
+        cursor: pointer;
+        border-radius: 25px;
+        border: none;
+      }
+
+      .copyButton:hover {
+        color: rgba(45, 44, 44, 0.429);
+      }
+
+      .wrapper {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .logo {
+        display: block;
+        animation: box ease-in-out infinite 5s;
+      }
+
+      @keyframes box {
+        0% {
+          transform: translateY(-20px);
+        }
+        50% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-20px);
+        }
+      }
+      .toggle {
+        margin-top: 10px;
+        margin-left: 20px;
+        position: relative;
+        background-color: rgba(108, 102, 102, 0.468);
+        width: 100px;
+        height: 50px;
+        border-radius: 50px;
+        transition: all 1.2s;
+        cursor: pointer;
+      }
+
+      .toggle::before {
+        content: "";
+        position: absolute;
+        background-color: rgba(29, 27, 27, 0.708);
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        transition: all 1.2s;
+      }
+
+      .toggle.active::before {
+        left: calc(100px - 10px - 40px);
+      }
+
+      body.dark {
+        background-color: hsla(0, 3%, 6%, 0.877);
+      }
+
+      *.dark {
+        transition: all 1.2s;
+        color: rgb(188, 173, 173);
+      }
+      button.dark {
+        color: rgba(255, 255, 255, 0.537);
+        background-color: rgba(120, 97, 97, 0.292);
+      }
+      .theme {
+        display: flex;
+        align-items: center;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom: 50px;
+        background-color: rgba(255, 228, 196, 0.525);
+        padding: 20px 0;
+      }
+      body.dark header {
+        color: rgb(41, 24, 24);
+      }
+
+      .text-box {
+        line-height: 1.5;
+        font-size: 24px;
+        background-color: rgba(123, 125, 125, 0.584);
+        padding: 50px;
+        color: aliceblue;
+      }
+
+      body.dark .tech {
+        padding: 15px;
+        color: rgb(1, 239, 239);
+      }
+
+      @media (max-width: 426px) {
+        .copyButton {
+          padding: 10px;
+          margin-left: 0;
+        }
+        .toggle {
+          margin-top: 10px;
+          margin-left: 20px;
+          position: relative;
+          background-color: rgba(108, 102, 102, 0.468);
+          width: 60px;
+          height: 30px;
+          border-radius: 50px;
+          transition: all 1.2s;
+          cursor: pointer;
+        }
+
+        .toggle::before {
+          width: 20px;
+          height: 20px;
+        }
+
+        .logo {
+          width: 150px;
+          height: auto;
+        }
+
+        .text-box {
+          font-size: 14px;
+          padding: 15px;
+        }
+      }
+
+      @media (max-width: 605px) {
+        .text-box {
+          font-size: 18px;
+          padding: 19px;
+        }
+        .toggleText {
+          font-size: 15px;
+        }
+      }
+
+      @media (max-width: 410px) {
+        .toggleText {
+          display: none;
+        }
+        .toggle.active::before {
+          position: absolute;
+          left: calc(20px + 50px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <label id="switch" class="switch">
+      <input type="checkbox" />
+      <span class="slider"></span>
+    </label> -->
+    <header>
+      <span
+        style="width: 100px; font-weight: bold; font-size: 26px"
+        class="title"
+        >Portfolio</span
+      >
+      <div class="theme">
+        <label id="toggleText" for="toggle">сменить тему</label>
+        <div role="checkbox" tabindex="1" id="toggle" class="toggle"></div>
+      </div>
+    </header>
+
+    <article class="acticle">
+      <div class="container">
+        <div class="acticle__about">
+          <h2 style="padding-bottom: 30px">Обо мне:</h2>
+          <div class="wrapper">
+            <img
+              class="logo"
+              src="https://99px.ru/sstorage/86/2016/01/image_860501160602081576385.gif"
+              width="200"
+              height="200"
+              alt="logo"
+            />
+            <p class="text-box">
+              Я (<strong>Головин Арсений</strong>) - будущий
+              фронтенд-разработчик. <br />
+              Мой стек включает HTML, CSS и JavaScript.
+            </p>
+          </div>
+        </div>
+        <!------------------------------- email --------------------------------------------------->
+        <em>Email:</em>
+        <span> <b id="copyTarget">arsenii.golovin2007@yandex.ru</b> </span>
+
+        <button data-clipboard-target="#copyTarget" class="copyButton">
+          copy
+          <!-- <span id="spanEmail"></span> -->
+        </button>
+        <!------------------------------- email --------------------------------------------------->
+        <br />
+        <br />
+      </div>
+    </article>
+
+    <section style="padding-bottom: 30px">
+      <div class="container">
+        <div class="tech">
+          <h2 style="padding-bottom: 20px">Про техникум</h2>
+          <h3 style="padding-bottom: 20px">История:</h3>
+          <p class="text" style="line-height: 1.5">
+            Техникум энергетики имени Полежаева был основан в 1958 году в городе
+            Саранск, Мордовия. За годы своего существования техникум стал одним
+            из ведущих учебных заведений региона, специализирующихся на
+            подготовке специалистов в области энергетики. В техникуме акцент
+            делается на практическом обучении и сотрудничестве с предприятиями
+            энергетического комплекса. Студенты получают современные знания и
+            навыки, необходимые для работы в сфере энергетики, что делает их
+            востребованными на рынке труда. Техникум имени Полежаева гордится
+            своей историей и стремится к дальнейшему развитию и
+            совершенствованию образовательного процесса.
+          </p>
+          <span
+            ><a target="_blank" href="https://steet.ru/"
+              >перейти на сайт техникума</a
+            ></span
+          >
+        </div>
+      </div>
+    </section>
+
+    <script>
+      let clipboard = new ClipboardJS(".copyButton");
+
+      clipboard.on("success", (e) => {
+        e.clearSelection();
+        e.trigger.innerHTML = "<i class='bx bx-check'></i>";
+        e.trigger.style.backgroundColor = "green";
+
+        setTimeout(() => {
+          e.trigger.textContent = "copy ";
+          e.trigger.style.backgroundColor = "";
+        }, 2000);
+      });
+
+      const toggle = document.querySelector(".toggle");
+      const body = document.body;
+      const btn = document.querySelector(".copyButton");
+      const theme = document.querySelector(".theme");
+
+      // ---------------------------------------------------------------------
+      theme.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        btn.classList.toggle("dark");
+      });
+
+      theme.addEventListener("click", () => {
+        toggle.classList.toggle("active");
+      });
+
+      theme.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
+          toggle.classList.toggle("active");
+          body.classList.toggle("dark");
+        }
+      });
+      // -------------------------------------------------------------------
+    </script>
+  </body>
+</html>
